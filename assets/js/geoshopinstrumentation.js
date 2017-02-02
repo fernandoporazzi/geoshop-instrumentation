@@ -30,9 +30,9 @@
     function init(argument) {
       var params = mountParameters(),
         img = document.createElement('img'),
-        imgServerUrl = '/assets/img/__geoshop.gif?';
+        imgServerUrl = 'http://localhost:3000/__geoshop.gif?';
 
-      img.src = imgServerUrl + encodeURIComponent(params);
+      img.src = imgServerUrl + params;
 
       document.body.appendChild(img);
     }
