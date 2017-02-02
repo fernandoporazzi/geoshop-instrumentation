@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GeoShop Instrumentation</title>
+</head>
+<body>
+  <script>
+    (function(w, d, s){
+      var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s);
+      j.async = true;
+      j.src = '/assets/js/geoshopinstrumentation.js';
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script');
+  </script>
+
+  <script>
+    window.GeoShop = window.GeoShop || {};
+    GeoShop.page = 'home';
+    GeoShop.isUserLogged = true;
+    GeoShop.userName = 'Fernando de Siqueira Porazzi';
+    GeoShop.userEmail = 'fernandoporazzi@gmail.com';
+  </script>
+</body>
+</html>
