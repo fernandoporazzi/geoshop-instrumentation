@@ -6,6 +6,7 @@
 
     function getKeyMap() {
       return {
+        store: 'store',
         page: 'p',
         isUserLogged: 'login',
         userName: 'un',
@@ -29,12 +30,14 @@
 
     function init(argument) {
       var params = mountParameters(),
-        img = document.createElement('img'),
+        img = new Image(),
         imgServerUrl = 'http://localhost:3000/__geoshop.gif?';
 
       img.src = imgServerUrl + params;
 
-      document.body.appendChild(img);
+      img.addEventListener('load', function() {
+        console.log('image loaded', img);
+      }, false);
     }
 
     return {
