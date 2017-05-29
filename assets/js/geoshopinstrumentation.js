@@ -6,11 +6,12 @@
 
     function getKeyMap() {
       return {
-        store: 'store',
+        storeId: 'storeId',
         page: 'p',
         isUserLogged: 'login',
         userName: 'un',
-        userEmail: 'ue'
+        userEmail: 'ue',
+        session: 's'
       };
     }
 
