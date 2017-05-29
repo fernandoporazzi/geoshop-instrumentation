@@ -4,6 +4,8 @@
 
   var GeoShopInstumentation = (function() {
 
+    var latitude, longitude;
+
     function getKeyMap() {
       return {
         storeId: 'storeId',
@@ -11,13 +13,18 @@
         isUserLogged: 'login',
         userName: 'un',
         userEmail: 'ue',
-        session: 's'
+        session: 's',
+        latitude: 'lat',
+        longitude: 'lng'
       };
     }
 
     function mountParameters() {
       var arr = [],
         map = getKeyMap();
+
+      GeoShop.latitude = latitude;
+      GeoShop.longitude = longitude;
 
       // GeoShop variable should be hoisted in the page. Check index.html
       for (var prop in GeoShop) {
@@ -29,7 +36,7 @@
       return arr.join('&');
     }
 
-    function init(argument) {
+    function request() {
       var params = mountParameters(),
         img = new Image(),
         imgServerUrl = 'http://localhost:3000/__geoshop.gif?';
@@ -39,6 +46,19 @@
       img.addEventListener('load', function() {
         console.log('image loaded', img);
       }, false);
+    }
+
+    function init(argument) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+
+          request();
+        }, function(err) {
+          console.log(err);
+        });
+      }
     }
 
     return {
