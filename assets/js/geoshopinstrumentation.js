@@ -15,8 +15,30 @@
         userEmail: 'ue',
         session: 's',
         latitude: 'lat',
-        longitude: 'lng'
+        longitude: 'lng',
+        cart: 'c'
       };
+    }
+
+    function getCartQuery() {
+      var cartData = GeoShop['cart'],
+        i = 0,
+        entries = [];
+
+      for (i; i < cartData.length; i++) {
+        var self = cartData[i],
+          entry = [];
+
+        for (var prop in self) {
+          if (self.hasOwnProperty(prop)) {
+            entry = entry.concat(prop + ':' + self[prop]);
+          }
+        }
+
+        entries = entries.concat(entry.join(';'));
+      }
+
+      return entries.join('|')
     }
 
     function mountParameters() {
@@ -29,7 +51,13 @@
       // GeoShop variable should be hoisted in the page. Check index.html
       for (var prop in GeoShop) {
         if (GeoShop.hasOwnProperty(prop)) {
-          arr.push(map[prop] + '=' + GeoShop[prop]);
+          var key = map[prop] || prop;
+
+          if (prop === 'cart') {
+            arr.push(key + '=' + getCartQuery());
+          } else {
+            arr.push(key + '=' + GeoShop[prop]);
+          }
         }
       }
 
