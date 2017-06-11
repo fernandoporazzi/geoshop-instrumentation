@@ -13,6 +13,7 @@
         isUserLogged: 'login',
         userName: 'un',
         userEmail: 'ue',
+        userId: 'ui',
         session: 's',
         latitude: 'lat',
         longitude: 'lng',
