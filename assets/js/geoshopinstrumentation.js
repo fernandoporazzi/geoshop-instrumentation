@@ -83,7 +83,10 @@
           latitude = position.coords.latitude;
           longitude = position.coords.longitude;
 
-          request();
+          if (GeoShop.storeId && GeoShop.session) {
+            request();
+          }
+
         }, function(err) {
           console.log(err);
         });
